@@ -1,0 +1,210 @@
+\hypertarget{class_gripper3f}{}\section{Gripper3f Class Reference}
+\label{class_gripper3f}\index{Gripper3f@{Gripper3f}}
+
+
+This class controls the 3-\/finger robotiq gripper.  
+
+
+
+
+{\ttfamily \#include $<$gripper3f\+\_\+control.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_gripper3f_ab7fedc88e7c52bc7490dbeae904f6b84}{Gripper3f} ()
+\item 
+void \hyperlink{class_gripper3f_a754aca6d83e6794de0fc955c9ff7364c}{gripper\+\_\+status\+Callback} (const robotiq\+\_\+s\+\_\+model\+\_\+control\+::\+S\+Model\+\_\+robot\+\_\+input\+::\+Const\+Ptr \&msg)
+\item 
+bool \hyperlink{class_gripper3f_acbc07a486b491fed1d849b49332357a6}{init} ()
+\item 
+void \hyperlink{class_gripper3f_aabda51ba43f1c7fa9382a205dd7cc942}{close} (int tolerance=2)
+\item 
+void \hyperlink{class_gripper3f_a006fce20ba7d4299c2fdd7918b9fb5ab}{open} (int p=0)
+\item 
+void \hyperlink{class_gripper3f_a16d4a057cb90e5c700d28326ac757181}{moveto} (int goal, int tolerance=1)
+\item 
+void \hyperlink{class_gripper3f_a3517993257d2b49a4304af9f3b652231}{set\+Mode} (int m)
+\item 
+void \hyperlink{class_gripper3f_a4fb3e4d4400eed694bdab7d5c2d3cd19}{set\+Speed} (int speed)
+\item 
+void \hyperlink{class_gripper3f_afbf314c1f603c9ad89c12c1805c66b43}{set\+Force} (int force)
+\item 
+int \hyperlink{class_gripper3f_a8e006806547d5346bc30af96f994c852}{get\+Mode} ()
+\item 
+int \hyperlink{class_gripper3f_a2954e4bfaaeee810142511478637468d}{get\+Force} ()
+\item 
+int \hyperlink{class_gripper3f_a9bbb54ceebac6d20d3c3e27d61c6fe64}{get\+Speed} ()
+\item 
+int \hyperlink{class_gripper3f_a9b8bf9829bf600142d2b28ef05211ed8}{get\+Pose} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class controls the 3-\/finger robotiq gripper. 
+
+This class uses rostopics S\+Model\+Robot\+Input and S\+Model\+Robot\+Out to control the s-\/model robotiq gripper. This class subscribes to Smodel\+Robot\+Input in order to retrieve gripper\textquotesingle{}s status information and publishes commands to the S\+Model\+Output topic. Boost and robotiq\+\_\+s\+\_\+model\+\_\+control are components required. \begin{DoxyAuthor}{Author}
+Barrero Lizarazo, Nicolas 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+August 2018 
+\end{DoxyDate}
+
+
+Definition at line 19 of file gripper3f\+\_\+control.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Gripper3f@{Gripper3f}!Gripper3f@{Gripper3f}}
+\index{Gripper3f@{Gripper3f}!Gripper3f@{Gripper3f}}
+\subsubsection[{\texorpdfstring{Gripper3f()}{Gripper3f()}}]{\setlength{\rightskip}{0pt plus 5cm}Gripper3f\+::\+Gripper3f (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_gripper3f_ab7fedc88e7c52bc7490dbeae904f6b84}{}\label{class_gripper3f_ab7fedc88e7c52bc7490dbeae904f6b84}
+The constructor initializes the subscriptor and publisher functions. Advertices the S\+Model\+Robot\+Input. Resizes vectors. 
+
+\subsection{Member Function Documentation}
+\index{Gripper3f@{Gripper3f}!close@{close}}
+\index{close@{close}!Gripper3f@{Gripper3f}}
+\subsubsection[{\texorpdfstring{close(int tolerance=2)}{close(int tolerance=2)}}]{\setlength{\rightskip}{0pt plus 5cm}void Gripper3f\+::close (
+\begin{DoxyParamCaption}
+\item[{int}]{tolerance = {\ttfamily 2}}
+\end{DoxyParamCaption}
+)}\hypertarget{class_gripper3f_aabda51ba43f1c7fa9382a205dd7cc942}{}\label{class_gripper3f_aabda51ba43f1c7fa9382a205dd7cc942}
+This function closes the gripper according to the different mode in which the gripper is set. 
+\begin{DoxyParams}{Parameters}
+{\em (\+Optional)} & tolerance its a position goal interval +/-\/ tolerance with respect to goal position (default 2) \\
+\hline
+\end{DoxyParams}
+\index{Gripper3f@{Gripper3f}!get\+Force@{get\+Force}}
+\index{get\+Force@{get\+Force}!Gripper3f@{Gripper3f}}
+\subsubsection[{\texorpdfstring{get\+Force()}{getForce()}}]{\setlength{\rightskip}{0pt plus 5cm}int Gripper3f\+::get\+Force (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_gripper3f_a2954e4bfaaeee810142511478637468d}{}\label{class_gripper3f_a2954e4bfaaeee810142511478637468d}
+Gets the current gripper\textquotesingle{}s force \begin{DoxyReturn}{Returns}
+int 0-\/255 see \hyperlink{class_gripper3f_afbf314c1f603c9ad89c12c1805c66b43}{set\+Force()} 
+\end{DoxyReturn}
+\index{Gripper3f@{Gripper3f}!get\+Mode@{get\+Mode}}
+\index{get\+Mode@{get\+Mode}!Gripper3f@{Gripper3f}}
+\subsubsection[{\texorpdfstring{get\+Mode()}{getMode()}}]{\setlength{\rightskip}{0pt plus 5cm}int Gripper3f\+::get\+Mode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_gripper3f_a8e006806547d5346bc30af96f994c852}{}\label{class_gripper3f_a8e006806547d5346bc30af96f994c852}
+Gets the current gripper\textquotesingle{}s mode \begin{DoxyReturn}{Returns}
+int 0-\/3 see \hyperlink{class_gripper3f_a3517993257d2b49a4304af9f3b652231}{set\+Mode()} 
+\end{DoxyReturn}
+\index{Gripper3f@{Gripper3f}!get\+Pose@{get\+Pose}}
+\index{get\+Pose@{get\+Pose}!Gripper3f@{Gripper3f}}
+\subsubsection[{\texorpdfstring{get\+Pose()}{getPose()}}]{\setlength{\rightskip}{0pt plus 5cm}int Gripper3f\+::get\+Pose (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_gripper3f_a9b8bf9829bf600142d2b28ef05211ed8}{}\label{class_gripper3f_a9b8bf9829bf600142d2b28ef05211ed8}
+Gets the current gripper\textquotesingle{}s position \begin{DoxyReturn}{Returns}
+int 0-\/255 see \hyperlink{class_gripper3f_a16d4a057cb90e5c700d28326ac757181}{moveto()} 
+\end{DoxyReturn}
+\index{Gripper3f@{Gripper3f}!get\+Speed@{get\+Speed}}
+\index{get\+Speed@{get\+Speed}!Gripper3f@{Gripper3f}}
+\subsubsection[{\texorpdfstring{get\+Speed()}{getSpeed()}}]{\setlength{\rightskip}{0pt plus 5cm}int Gripper3f\+::get\+Speed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_gripper3f_a9bbb54ceebac6d20d3c3e27d61c6fe64}{}\label{class_gripper3f_a9bbb54ceebac6d20d3c3e27d61c6fe64}
+Gets the current gripper\textquotesingle{}s speed \begin{DoxyReturn}{Returns}
+int 0-\/255 see \hyperlink{class_gripper3f_a4fb3e4d4400eed694bdab7d5c2d3cd19}{set\+Speed()} 
+\end{DoxyReturn}
+\index{Gripper3f@{Gripper3f}!gripper\+\_\+status\+Callback@{gripper\+\_\+status\+Callback}}
+\index{gripper\+\_\+status\+Callback@{gripper\+\_\+status\+Callback}!Gripper3f@{Gripper3f}}
+\subsubsection[{\texorpdfstring{gripper\+\_\+status\+Callback(const robotiq\+\_\+s\+\_\+model\+\_\+control\+::\+S\+Model\+\_\+robot\+\_\+input\+::\+Const\+Ptr \&msg)}{gripper_statusCallback(const robotiq_s_model_control::SModel_robot_input::ConstPtr &msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void Gripper3f\+::gripper\+\_\+status\+Callback (
+\begin{DoxyParamCaption}
+\item[{const robotiq\+\_\+s\+\_\+model\+\_\+control\+::\+S\+Model\+\_\+robot\+\_\+input\+::\+Const\+Ptr \&}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{class_gripper3f_a754aca6d83e6794de0fc955c9ff7364c}{}\label{class_gripper3f_a754aca6d83e6794de0fc955c9ff7364c}
+This is the regular Callback from a ros node, this function updates the data vector that stores the gripper status. 
+\begin{DoxyParams}{Parameters}
+{\em msg} & is the message type the nodes subscribes to\+: const robotiq\+\_\+s\+\_\+model\+\_\+control\+::\+S\+Model\+\_\+robot\+\_\+input\+::\+Const\+Ptr\& \\
+\hline
+\end{DoxyParams}
+\index{Gripper3f@{Gripper3f}!init@{init}}
+\index{init@{init}!Gripper3f@{Gripper3f}}
+\subsubsection[{\texorpdfstring{init()}{init()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Gripper3f\+::init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_gripper3f_acbc07a486b491fed1d849b49332357a6}{}\label{class_gripper3f_acbc07a486b491fed1d849b49332357a6}
+The init function must be executed at first. It resets the gripper and executes the initialization routine. This function overrides other configured parameters previously defined. Once the init routine is done the gripper will move. \begin{DoxyReturn}{Returns}
+returns true when the routine is executed succesfully 
+\end{DoxyReturn}
+\index{Gripper3f@{Gripper3f}!moveto@{moveto}}
+\index{moveto@{moveto}!Gripper3f@{Gripper3f}}
+\subsubsection[{\texorpdfstring{moveto(int goal, int tolerance=1)}{moveto(int goal, int tolerance=1)}}]{\setlength{\rightskip}{0pt plus 5cm}void Gripper3f\+::moveto (
+\begin{DoxyParamCaption}
+\item[{int}]{goal, }
+\item[{int}]{tolerance = {\ttfamily 1}}
+\end{DoxyParamCaption}
+)}\hypertarget{class_gripper3f_a16d4a057cb90e5c700d28326ac757181}{}\label{class_gripper3f_a16d4a057cb90e5c700d28326ac757181}
+This function moves the gripper to a given position between 0-\/255 and also has an optional tolerance position parameter executes the trayectory and waits until the goal is reached. Must be called after \hyperlink{class_gripper3f_acbc07a486b491fed1d849b49332357a6}{init()} 
+\begin{DoxyParams}{Parameters}
+{\em goal} & 0-\/255 where 0 is totally open and 255 totally closed \\
+\hline
+{\em tolerance} & (optional) tolerance interval where +/-\/tolerance whith respect goal position is allowed \\
+\hline
+\end{DoxyParams}
+\index{Gripper3f@{Gripper3f}!open@{open}}
+\index{open@{open}!Gripper3f@{Gripper3f}}
+\subsubsection[{\texorpdfstring{open(int p=0)}{open(int p=0)}}]{\setlength{\rightskip}{0pt plus 5cm}void Gripper3f\+::open (
+\begin{DoxyParamCaption}
+\item[{int}]{p = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\hypertarget{class_gripper3f_a006fce20ba7d4299c2fdd7918b9fb5ab}{}\label{class_gripper3f_a006fce20ba7d4299c2fdd7918b9fb5ab}
+This function opens the gripper according to the different mode in which the gripper is set. Must be called after \hyperlink{class_gripper3f_acbc07a486b491fed1d849b49332357a6}{init()} 
+\begin{DoxyParams}{Parameters}
+{\em (\+Optional)} & p p=1 for not printing messages otherwise 0 (default 0) \\
+\hline
+\end{DoxyParams}
+\index{Gripper3f@{Gripper3f}!set\+Force@{set\+Force}}
+\index{set\+Force@{set\+Force}!Gripper3f@{Gripper3f}}
+\subsubsection[{\texorpdfstring{set\+Force(int force)}{setForce(int force)}}]{\setlength{\rightskip}{0pt plus 5cm}void Gripper3f\+::set\+Force (
+\begin{DoxyParamCaption}
+\item[{int}]{force}
+\end{DoxyParamCaption}
+)}\hypertarget{class_gripper3f_afbf314c1f603c9ad89c12c1805c66b43}{}\label{class_gripper3f_afbf314c1f603c9ad89c12c1805c66b43}
+This function sets gripper\textquotesingle{}s force 
+\begin{DoxyParams}{Parameters}
+{\em int} & force 0-\/255 where 255 is max force (default 100) \\
+\hline
+\end{DoxyParams}
+\index{Gripper3f@{Gripper3f}!set\+Mode@{set\+Mode}}
+\index{set\+Mode@{set\+Mode}!Gripper3f@{Gripper3f}}
+\subsubsection[{\texorpdfstring{set\+Mode(int m)}{setMode(int m)}}]{\setlength{\rightskip}{0pt plus 5cm}void Gripper3f\+::set\+Mode (
+\begin{DoxyParamCaption}
+\item[{int}]{m}
+\end{DoxyParamCaption}
+)}\hypertarget{class_gripper3f_a3517993257d2b49a4304af9f3b652231}{}\label{class_gripper3f_a3517993257d2b49a4304af9f3b652231}
+Sets four different gripper\textquotesingle{}s mode. Must be called after \hyperlink{class_gripper3f_acbc07a486b491fed1d849b49332357a6}{init()} 0\+:basic mode 1\+:pinch mode 2\+:wide mode 3\+:scissors mode 
+\begin{DoxyParams}{Parameters}
+{\em int} & mode 0-\/3 according desired mode (default basic mode) \\
+\hline
+\end{DoxyParams}
+\index{Gripper3f@{Gripper3f}!set\+Speed@{set\+Speed}}
+\index{set\+Speed@{set\+Speed}!Gripper3f@{Gripper3f}}
+\subsubsection[{\texorpdfstring{set\+Speed(int speed)}{setSpeed(int speed)}}]{\setlength{\rightskip}{0pt plus 5cm}void Gripper3f\+::set\+Speed (
+\begin{DoxyParamCaption}
+\item[{int}]{speed}
+\end{DoxyParamCaption}
+)}\hypertarget{class_gripper3f_a4fb3e4d4400eed694bdab7d5c2d3cd19}{}\label{class_gripper3f_a4fb3e4d4400eed694bdab7d5c2d3cd19}
+This function sets gripper\textquotesingle{}s speed 
+\begin{DoxyParams}{Parameters}
+{\em int} & speed 0-\/255 where 255 is max speed (default 150) \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/ctai/repos/lenny\+\_\+routines/src/code\+\_\+docu/include/\hyperlink{gripper3f__control_8h}{gripper3f\+\_\+control.\+h}\end{DoxyCompactItemize}
