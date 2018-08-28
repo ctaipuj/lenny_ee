@@ -6,6 +6,7 @@ Gripper3f::Gripper3f(){
 	data.resize(22);
 	command.resize(19,0);
 	init_ok=0; //control flag
+	ros::Duration(1).sleep(); //Required not sure why, something related to the publisher advertising time requirement...
 }
 
 void Gripper3f::gripper_statusCallback(const robotiq_s_model_control::SModel_robot_input::ConstPtr& msg){	//update data vector everytime spinOnce	

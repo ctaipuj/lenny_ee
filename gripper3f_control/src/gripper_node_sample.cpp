@@ -5,7 +5,7 @@ int main(int argc, char*argv[]){ //main
 	ros::init(argc,argv,"gripper_move_group"); //init a node
 	ros::NodeHandle n; //handle
 	Gripper3f right_gripper; //right_gripper
-	ros::Duration(1).sleep(); // This is neccesary !
+	//ros::Duration(1).sleep(); // This is neccesary ! I moved it to the class constructor
 	if(right_gripper.init()){ //verify gripper init
 		right_gripper.setSpeed(20);	//set speed
 		right_gripper.setForce(50); //set force
