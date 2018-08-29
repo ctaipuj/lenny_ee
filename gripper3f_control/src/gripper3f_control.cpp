@@ -1,4 +1,4 @@
-#include "../include/gripper3f_control.h"
+#include "../include/gripper3f_control/gripper3f_control.h"
 
 Gripper3f::Gripper3f(){
 	sub=n.subscribe("SModelRobotInput",10, &Gripper3f::gripper_statusCallback,this); //subscriber 

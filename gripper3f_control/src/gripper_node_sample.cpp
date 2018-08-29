@@ -1,4 +1,4 @@
-#include "../include/gripper3f_control.h" //include the control class
+#include "../include/gripper3f_control/gripper3f_control.h" //include the control class
 
 int main(int argc, char*argv[]){ //main
 
@@ -30,6 +30,5 @@ int main(int argc, char*argv[]){ //main
 		right_gripper.open();//open
 		right_gripper.setMode(0);//basic mode
 	}
-	ros::spin();
 	return 0;
 }
