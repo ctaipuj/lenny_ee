@@ -1,4 +1,5 @@
 #include "../include/gripper3f_control/gripper3f_control.h" //include the control class
+//You can include in your file <gripper3fcontrol/gripper3f_control.h> directly once the package gripper3f_control is compilated
 
 int main(int argc, char*argv[]){ //main
 
@@ -8,7 +9,7 @@ int main(int argc, char*argv[]){ //main
 	//ros::Duration(1).sleep(); // This is neccesary ! I moved it to the class constructor
 	if(right_gripper.init()){ //verify gripper init
 		right_gripper.setSpeed(20);	//set speed
-		right_gripper.setForce(50); //set force
+		right_gripper.setForce(150); //set force
 		right_gripper.setMode(1); //change to pinch mode
 		right_gripper.close();	//close gripper
 		right_gripper.setMode(4); //change an nonexistent mode

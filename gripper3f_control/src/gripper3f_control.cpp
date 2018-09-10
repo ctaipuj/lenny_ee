@@ -40,7 +40,7 @@ bool Gripper3f::init(){ //Starts gripper
 	if(data[0]==0){ //if off then turn on
 		ROS_INFO("gripper3f init routine has begun");
 		setSpeed(150); //defautl params
-		setForce(100);
+		setForce(0);
 		command[0]=1; //A must for the driver
 		command[2]=1;
 		publisher(); //publish
@@ -68,7 +68,7 @@ void Gripper3f::close(int tolerance){ //closes gripper
 		case 0:
 			command[7]=241; //When basic mode
 			publisher();
-			while(data[11]<241-tolerance || data[11]>241+tolerance) //in basic mode the max is 241 and so on for other cases wait while gripper is moving
+			while((data[11]<241-tolerance || data[11]>241+tolerance) && !objectDetected()) //in basic mode the max is 241 and so on for other cases wait while gripper is moving
 				ros::spinOnce(); //call the callback to update data vector. (updates gripper's status)
 			ROS_INFO("gripper 3f Goal Position: CLOSE reached"); //print if success
 			break; //escape
@@ -76,7 +76,7 @@ void Gripper3f::close(int tolerance){ //closes gripper
 		case 1:
 			command[7]=113; //When pinch mode
 			publisher();
-			while(data[11]<113-tolerance || data[11]>113+tolerance)
+			while((data[11]<113-tolerance || data[11]>113+tolerance) && !objectDetected())
 				ros::spinOnce();
 			ROS_INFO("gripper 3f Goal Position: CLOSE reached");
 			break;
@@ -84,7 +84,7 @@ void Gripper3f::close(int tolerance){ //closes gripper
 		case 2:
 			command[7]=241; //When wide mode
 			publisher();
-			while(data[11]<241-tolerance || data[11]>241+tolerance){
+			while((data[11]<241-tolerance || data[11]>241+tolerance) && !objectDetected()){
 				ros::spinOnce();}
 			ROS_INFO("gripper 3f Goal Position: CLOSE reached");
 			break;
@@ -92,7 +92,7 @@ void Gripper3f::close(int tolerance){ //closes gripper
 		case 3:
 			command[7]=233; //When scissormode
 			publisher();
-			while(data[20]<233-tolerance) //scissors mode is always different !
+			while(data[20]<233-tolerance && !objectDetected()) //scissors mode is always different !
 				ros::spinOnce();
 			ROS_INFO("gripper 3f Goal Position: CLOSE reached");
 			break;
@@ -113,7 +113,7 @@ void Gripper3f::open(int p){ //opens gripper
 		case 0:
 			command[7]=0; //When basic mode
 			publisher(); //publish data to topic
-			while(data[11]>7) //in basic mode the 0 is 6 and so on for other cases
+			while(data[11]>7 && !objectDetected()) //in basic mode the 0 is 6 and so on for other cases
 				ros::spinOnce(); //update data from callback until gripper reaches the position 
 			if(p!=1)//by default prints the message below...
 				ROS_INFO("gripper 3f Goal Position: OPEN reached"); //success
@@ -122,7 +122,7 @@ void Gripper3f::open(int p){ //opens gripper
 		case 1:
 			command[7]=0; //When pinch mode
 			publisher();
-			while(data[11]>7)
+			while(data[11]>7 && !objectDetected())
 				ros::spinOnce();
 			if(p!=1)
 				ROS_INFO("gripper 3f Goal Position: OPEN reached");
@@ -131,7 +131,7 @@ void Gripper3f::open(int p){ //opens gripper
 		case 2:
 			command[7]=0; //When wide mode
 			publisher();
-			while(data[11]>7)
+			while(data[11]>7 && !objectDetected())
 				ros::spinOnce();
 			if(p!=1)
 				ROS_INFO("gripper 3f Goal Position: OPEN reached");
@@ -140,7 +140,7 @@ void Gripper3f::open(int p){ //opens gripper
 		case 3:
 			command[7]=0; //When scissormode
 			publisher();
-			while(data[20]>16)//this mode is the weirdo
+			while(data[20]>16 && !objectDetected())//this mode is the weirdo
 				ros::spinOnce();
 			if(p!=1)
 				ROS_INFO("gripper 3f Goal Position: OPEN reached");
@@ -162,12 +162,12 @@ void Gripper3f::moveto(int goal, int tolerance){ //moves to a position
 	publisher(); //publishes
 	switch(mode){
 		case 3: //remeber this is the weird one
-			while(data[20]<goal_pose-tolerance || data[20]>goal_pose+tolerance) //wait until gripper reaches
+			while((data[20]<goal_pose-tolerance || data[20]>goal_pose+tolerance) && !objectDetected()) //wait until gripper reaches
 				ros::spinOnce(); //call callback
 			ROS_INFO("gripper 3f Goal Position: %i reached",goal); //success
 			break;
 		default:
-			while(data[11]<goal_pose-tolerance || data[11]>goal_pose+tolerance) //same above
+			while((data[11]<goal_pose-tolerance || data[11]>goal_pose+tolerance) && !objectDetected()) //same above
 				ros::spinOnce();
 			ROS_INFO("gripper 3f Goal Position: %i reached",goal);
 			break;
@@ -175,6 +175,27 @@ void Gripper3f::moveto(int goal, int tolerance){ //moves to a position
 	end:;
 }
 
+bool Gripper3f::objectDetected(){
+	if(data[5]==1 || data[5]==2){
+		ROS_INFO("Object detected in finger A");
+		return 1;
+	}
+	else if(data[6]==1 || data[6]==2){
+		ROS_INFO("Object detected in finger B");
+		return 1;
+	}
+	else if(data[7]==1 || data[7]==2){
+		ROS_INFO("Object detected in finger C");
+		return 1;
+	}
+	else if(data[8]==1 || data[8]==2){
+		ROS_INFO("Object detected in scissors mode");
+		return 1;
+	}
+	else
+		return 0;
+}
+	
 void Gripper3f::setMode(int m){ //set gripper's mode
 	if(init_ok!=1){
 		init_error(); //init first otherwise end

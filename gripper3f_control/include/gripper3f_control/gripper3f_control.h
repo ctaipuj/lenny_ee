@@ -60,6 +60,10 @@ class Gripper3f{
 		@param tolerance (optional) tolerance interval where +/-tolerance whith respect goal position is allowed
 	*/
 		void moveto(int goal, int tolerance=1);
+	/** Detects objects in gripper's fingers
+		@return true if and object is detected false otherwise.	
+	*/	
+		bool objectDetected();
 	/** Sets four different gripper's mode. Must be called after init()
 		0:basic mode
 		1:pinch mode
