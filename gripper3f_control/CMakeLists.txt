@@ -10,6 +10,8 @@ project(gripper3f_control)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   robotiq_s_model_control
+  robotiq_joint_state_publisher
+  robotiq_s_model_visualization
 )
 
 ###################################
