@@ -26,7 +26,9 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES gripper3f_control
-  CATKIN_DEPENDS roscpp
+  CATKIN_DEPENDS 
+  roscpp
+  robotiq_s_model_control
 )
 
 ###########
