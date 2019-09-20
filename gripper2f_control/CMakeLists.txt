@@ -9,7 +9,7 @@ project(gripper2f_control)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
-  robotiq_c_model_control
+  robotiq_2f_gripper_control
 )
 
 ## System dependencies are found with CMake's conventions

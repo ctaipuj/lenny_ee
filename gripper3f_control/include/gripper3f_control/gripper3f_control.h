@@ -3,8 +3,8 @@
 //ROS
 #include <ros/ros.h>
 //Load gripper Messages
-#include <robotiq_s_model_control/SModel_robot_input.h>
-#include <robotiq_s_model_control/SModel_robot_output.h>
+#include <robotiq_3f_gripper_articulated_msgs/Robotiq3FGripperRobotInput.h>
+#include <robotiq_3f_gripper_articulated_msgs/Robotiq3FGripperRobotOutput.h>
 
 //Using a class works better and is more organized :D
 
@@ -40,7 +40,7 @@ class Gripper3f{
 	/** This is the regular Callback from a ros node, this function updates the data vector that stores the gripper status.
 		@param msg is the message type the nodes subscribes to: const robotiq_s_model_control::SModel_robot_input::ConstPtr&
 	*/		
-		void gripper_statusCallback(const robotiq_s_model_control::SModel_robot_input::ConstPtr& msg);
+		void gripper_statusCallback(const robotiq_3f_gripper_articulated_msgs::Robotiq3FGripperRobotInput::ConstPtr& msg);
 	/** The init function must be executed at first. It resets the gripper and executes the initialization routine. This function overrides other configured parameters previously defined. Once the init routine is done the gripper will move.
 		@return returns true when the routine is executed succesfully
 	*/		

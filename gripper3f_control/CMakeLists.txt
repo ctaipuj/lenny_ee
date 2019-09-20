@@ -9,9 +9,10 @@ project(gripper3f_control)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
-  robotiq_s_model_control
-  robotiq_joint_state_publisher
-  robotiq_s_model_visualization
+  robotiq_3f_gripper_control
+  robotiq_3f_gripper_joint_state_publisher
+  robotiq_3f_gripper_visualization
+  robotiq_3f_gripper_articulated_msgs
 )
 
 ###################################
@@ -28,7 +29,7 @@ catkin_package(
   LIBRARIES gripper3f_control
   CATKIN_DEPENDS 
   roscpp
-  robotiq_s_model_control
+  robotiq_3f_gripper_control
 )
 
 ###########

@@ -1,15 +1,15 @@
 #include "../include/gripper3f_control/gripper3f_control.h"
 
 Gripper3f::Gripper3f(){
-	sub=n.subscribe("SModelRobotInput",10, &Gripper3f::gripper_statusCallback,this); //subscriber 
-	pub=n.advertise<robotiq_s_model_control::SModel_robot_output>("SModelRobotOutput",50); //Publisher
+	sub=n.subscribe("Robotiq3FGripperRobotInput",10, &Gripper3f::gripper_statusCallback,this); //subscriber 
+	pub=n.advertise<robotiq_3f_gripper_articulated_msgs::Robotiq3FGripperRobotOutput>("Robotiq3FGripperRobotOutput",50); //Publisher
 	data.resize(22);
 	command.resize(19,0);
 	init_ok=0; //control flag
 	ros::Duration(1).sleep(); //Required not sure why, something related to the publisher advertising time requirement...
 }
 
-void Gripper3f::gripper_statusCallback(const robotiq_s_model_control::SModel_robot_input::ConstPtr& msg){	//update data vector everytime spinOnce	
+void Gripper3f::gripper_statusCallback(const robotiq_3f_gripper_articulated_msgs::Robotiq3FGripperRobotInput::ConstPtr& msg){	//update data vector everytime spinOnce	
 	data[0]=msg->gACT;
 	data[1]=msg->gMOD;
 	data[2]=msg->gGTO;
@@ -296,8 +296,8 @@ int Gripper3f::getPose(){
 
 
 
-void Gripper3f::publisher(){ //publish to Output topic 
-	robotiq_s_model_control::SModel_robot_output cmd;
+void Gripper3f::publisher(){ //publish to Output topic
+	robotiq_3f_gripper_articulated_msgs::Robotiq3FGripperRobotOutput cmd;
 	
 	cmd.rACT=command[0];
 	cmd.rMOD=command[1];
