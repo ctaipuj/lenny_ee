@@ -1,7 +1,7 @@
 <!-- Launch file for Segway platform startup -->
 <launch>
     <arg name="sim" default="false"/>
-    <arg name="comport" default="/dev/ttyUSB0" unless="$(arg sim)"/> 
+    <arg name="comport" default="/dev/ttyUSB1" unless="$(arg sim)"/> 
     <arg name="baud" default="115200" unless="$(arg sim)"/> 
     
     <!-- Launch action server for gripper -->
@@ -20,7 +20,7 @@
         <param name="action_name" value="command_robotiq_action" />
     </node>
 
-    <param name="robot_description" command="$(find xacro)/xacro $(find robotiq_2f_85_gripper_visualization)/urdf/robotiq_arg2f_85_model.xacro" />  
+    <param name="robot_description" command="$(find xacro)/xacro $(find robotiq_2f_85_gripper_visualization)/urdf/robotiq_arg2f_85_model.xacro" />
 
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
         <param name="robot_description" value="robot_description"/>

@@ -32,9 +32,9 @@ def operate_gripper():
     goal = CommandRobotiqGripperGoal()
     goal.emergency_release = False
     goal.stop = False
-    goal.position = 0.00
-    goal.speed = 0.1
-    goal.force = 5.0
+    goal.position = 0.00 #/m
+    goal.speed = 0.1 #m/s
+    goal.force = 5.0 #0-100%
 
     # Sends the goal to the gripper.
     robotiq_client.send_goal(goal)
