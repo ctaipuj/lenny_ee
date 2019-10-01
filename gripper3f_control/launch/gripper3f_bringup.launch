@@ -23,7 +23,7 @@ POSSIBILITY OF SUCH DAMAGE.
   <!--IF SOMETHING GOES WRONG TRY ROSLAUCHing IN A SUDO ENVIRONMENT: 
   run "sudo su ╴╴preserve-environment" before roslaunch. Nicolas-->
   <arg name="prefix" default="" />
-  <arg name="com_port" default="/dev/ttyUSB1" />
+  <arg name="comport" default="/dev/ttyUSB1" />
   <arg name="gripper_name" default="right_gripper" />
 
   <node name="$(arg gripper_name)" pkg="gripper3f_control" type="Robotiq3FGripperRtuNode.py" respawn="true" output="screen"
