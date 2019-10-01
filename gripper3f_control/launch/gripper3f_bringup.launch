@@ -27,7 +27,7 @@ POSSIBILITY OF SUCH DAMAGE.
   <arg name="gripper_name" default="right_gripper" />
 
   <node name="$(arg gripper_name)" pkg="gripper3f_control" type="Robotiq3FGripperRtuNode.py" respawn="true" output="screen"
-  	args="$(arg com_port)"/>
+  	args="$(arg comport)"/>
   	
   <node name="$(arg gripper_name)_joint_states" pkg="robotiq_3f_gripper_joint_state_publisher" type="robotiq_3f_gripper_joint_states" respawn="true"/>
   	 
